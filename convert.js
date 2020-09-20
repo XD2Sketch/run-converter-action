@@ -15,6 +15,11 @@ const runConverter = () => new Promise((resolve, reject) => {
     '--experimental-symbols',
   ])
 
+  converter.on('error', (error) => {
+    reject(error);
+    converter.kill();
+  });
+
   converter.on('message', (msg) => {
     const parsed = JSON.parse(msg)
     if (parsed.type === 'error') {
