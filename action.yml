@@ -16,9 +16,14 @@ inputs:
   aws-bucket-name:
     description: 'name of AWS bucket to use'
     required: true
-outputs:
-  output-file-url:
-    description: 'Output file url'
+  token:
+    description: 'The GitHub authentication token'
+    required: false
+    default: ${{ github.token }}
+  repository:
+    description: 'The full name of the target repository.'
+    required: false
+    default: ${{ github.repository }}
 runs:
   using: 'node12'
   main: 'dist/index.js'

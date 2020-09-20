@@ -17,16 +17,18 @@ const runConverter = () => new Promise((resolve, reject) => {
 
   converter.on('message', (msg) => {
     const parsed = JSON.parse(msg)
-    if (parsed.type !== 'error') return
-
-    reject(new Error(util.format(
-      MESSAGE_TEMPLATE,
-      inputFileName,
-      parsed.message,
-      parsed.stack,
-      parsed.additionalInfo || 'Not available',
-    )))
-    converter.kill()
+    if (parsed.type === 'error') {
+      reject(new Error(util.format(
+        MESSAGE_TEMPLATE,
+        inputFileName,
+        parsed.message,
+        parsed.stack,
+        parsed.additionalInfo || 'Not available',
+      )))
+      converter.kill()
+    } else {
+      console.log('received message: %O', parsed);
+    }
   })
 
   converter.on('exit', (code) => {
