@@ -4,7 +4,7 @@ const aws = require('aws-sdk')
 const inputFileName = core.getInput('file-name')
 const awsInputDir = core.getInput('aws-input-directory')
 const awsOutputDir = core.getInput('aws-output-directory')
-const bucket = core.getInput('aws-output-directory')
+const bucket = core.getInput('aws-bucket-name')
 
 const s3 = new aws.S3()
 
