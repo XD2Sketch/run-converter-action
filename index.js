@@ -7,14 +7,19 @@ const runner = require('./convert')
 const tmpDir = require('./tmp-dir')
 
 const inputFileName = core.getInput('file-name')
-const outputFileName = inputFileName.replace(/\.xd$/, '.sketch')
+const awsOutputDir = core.getInput('aws-output-directory')
+const outputFileName = inputFileName.replace(/\.xd$/, `.${awsOutputDir}`)
+const awsFileName = `${github.context.issue.number}_${outputFileName}`
 
 aws.getFile()
   .then((data) => {
     fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body, { encoding: 'binary' })
   })
+  .then(() => console.log(`"${inputFileName}" is downloaded from AWS`))
   .then(() => runner.runConverter())
+  .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
   .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName), { encoding: 'binary' }))
-  .then((data) => aws.uploadFile(`${github.context.issue.number}_${outputFileName}`, data))
-  .then(() => core.setOutput('output-file-url', aws.getUrl(outputFileName)))
+  .then((data) => aws.uploadFile(awsFileName, data))
+  .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
+  .then(() => core.setOutput('output-file-url', aws.getUrl(awsFileName)))
   .catch((error) => core.setFailed(error))
