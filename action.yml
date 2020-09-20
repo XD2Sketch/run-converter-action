@@ -1,0 +1,30 @@
+name: 'Run converter'
+description: 'Runs converter on files specified'
+inputs:
+  file-name:
+    description: 'Name of file to convert'
+    required: true
+  executable:
+    description: 'Path to executable JS file'
+    required: true
+  aws-input-directory:
+    description: 'AWS directory which contains input file'
+    required: true
+  aws-output-directory:
+    description: 'AWS directory used to upload result file'
+    required: true
+  aws-bucket-name:
+    description: 'name of AWS bucket to use'
+    required: true
+  aws-secret:
+    description: 'AWS secret to use'
+    required: true
+  aws-access-key:
+    description: 'AWS access key to use'
+    required: true
+outputs:
+  output-file-url:
+    description: 'Output file url'
+runs:
+  using: 'node12'
+  main: 'index.js'

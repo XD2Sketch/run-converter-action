@@ -1,0 +1,20 @@
+const core = require('@actions/core')
+const github = require('@actions/github')
+const fs = require('fs')
+const path = require('path')
+const aws = require('./aws')
+const runner = require('./convert')
+const tmpDir = require('./tmp-dir')
+
+const inputFileName = core.getInput('file-name')
+const outputFileName = inputFileName.replace(/\.xd$/, '.sketch')
+
+aws.getFile()
+  .then((data) => {
+    fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body, { encoding: 'binary' })
+  })
+  .then(() => runner.runConverter())
+  .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName), { encoding: 'binary' }))
+  .then((data) => aws.uploadFile(`${github.context.issue.number}_${outputFileName}`, data))
+  .then(() => core.setOutput('output-file-url', aws.getUrl(outputFileName)))
+  .catch((error) => core.setFailed(error))
