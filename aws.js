@@ -5,15 +5,8 @@ const inputFileName = core.getInput('file-name')
 const awsInputDir = core.getInput('aws-input-directory')
 const awsOutputDir = core.getInput('aws-output-directory')
 const bucket = core.getInput('aws-output-directory')
-const accessKey = core.getInput('aws-access-key')
-const secret = core.getInput('aws-secret')
 
-const s3 = new aws.S3({
-  credentials: {
-    accessKeyId: accessKey,
-    secretAccessKey: secret,
-  },
-})
+const s3 = new aws.S3()
 
 const getFile = () => {
   const s3Params = {

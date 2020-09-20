@@ -16,15 +16,9 @@ inputs:
   aws-bucket-name:
     description: 'name of AWS bucket to use'
     required: true
-  aws-secret:
-    description: 'AWS secret to use'
-    required: true
-  aws-access-key:
-    description: 'AWS access key to use'
-    required: true
 outputs:
   output-file-url:
     description: 'Output file url'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'

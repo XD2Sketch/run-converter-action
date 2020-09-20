@@ -6,10 +6,13 @@
 # https://github.com/Danimoth/gitattributes
 
 # Source code
-*.cjs             text linguist-language=TypeScript
-*.js              text linguist-language=TypeScript
+*.cjs             text
+*.js              text
 *.json            text
 *.ts              text
+
+# Dist
+dist/*            text -diff
 
 # Documentation
 *.md              text
