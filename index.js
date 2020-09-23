@@ -14,12 +14,12 @@ const awsFileName = `${github.context.issue.number}_${outputFileName}`
 
 aws.getFile()
   .then((data) => {
-    fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body, { encoding: 'binary' })
+    fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body)
   })
   .then(() => console.log(`"${inputFileName}" is downloaded from AWS`))
   .then(() => runner.runConverter())
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
-  .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName), { encoding: 'binary' }))
+  .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName)))
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
   .then(() => postMessage(`Successfully converted${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))

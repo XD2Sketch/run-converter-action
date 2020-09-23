@@ -9,7 +9,7 @@
   "dependencies": {
     "@actions/core": "^1.2.5",
     "@actions/github": "^4.0.0",
-    "aws-sdk": "^2.756.0",
+    "aws-sdk": "^2.758.0",
     "tmp-promise": "^3.0.2"
   },
   "devDependencies": {
