@@ -10,7 +10,7 @@ const tmpDir = require('./tmp-dir')
 const inputFileName = core.getInput('file-name')
 const awsOutputDir = core.getInput('aws-output-directory')
 const outputFileName = inputFileName.replace(/\.xd$/, `.${awsOutputDir}`)
-const awsFileName = `${github.context.issue.number}_${outputFileName}`
+const awsFileName = `${github.context.runId}_${outputFileName}`
 
 aws.getFile()
   .then((data) => {
