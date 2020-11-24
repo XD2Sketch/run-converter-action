@@ -11,7 +11,8 @@ const fileName = core.getInput('file-name')
 const filePath = path.join(tmpDir.name, fileName);
 
 const runConverter = async () => {
-  const { stderr } = execute(`node ${executable} ${filePath} --experimental-symbols`);
+  const { stdout, stderr } = execute(`node ${executable} ${filePath} --experimental-symbols`);
+  console.log(stdout);
   if (stderr && stderr.trim()) {
     throw stderr;
   }
