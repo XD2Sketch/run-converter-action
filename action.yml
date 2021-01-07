@@ -16,6 +16,10 @@ inputs:
   aws-bucket-name:
     description: 'name of AWS bucket to use'
     required: true
+  post-message-enabled:
+    description: 'Post message to commit once done'
+    default: '1'
+    required: false
   token:
     description: 'The GitHub authentication token'
     required: false

@@ -1,8 +1,8 @@
-const tmp = require('tmp-promise')
+const tmp = require('tmp-promise');
 
 const dir = tmp.dirSync({
   unsafeCleanup: true,
-})
+});
 
-exports = dir
-module.exports = dir
+exports = dir;
+module.exports = dir;

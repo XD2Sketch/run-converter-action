@@ -116,15 +116,15 @@
   resolved "https://registry.yarnpkg.com/@types/tmp/-/tmp-0.2.0.tgz#e3f52b4d7397eaa9193592ef3fdd44dc0af4298c"
   integrity sha512-flgpHJjntpBAdJD43ShRosQvNC0ME97DCfGvZEDlAThQmnerRXrLbX6YgzRBQCZTthET9eAWFAMaYP0m0Y4HzQ==
 
-"@vercel/ncc@^0.25.1":
-  version "0.25.1"
-  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.25.1.tgz#a4aacdb508ac496fc0c63a3c3203d700a619cc0e"
-  integrity sha512-dGecC5+1wLof1MQpey4+6i2KZv4Sfs6WfXkl9KfO32GED4ZPiKxRfvtGPjbjZv0IbqMl6CxtcV1RotXYfd5SSA==
+"@vercel/ncc@^0.26.2":
+  version "0.26.2"
+  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.26.2.tgz#d0799374eb8618e48cc0841c82793b5b670c9219"
+  integrity sha512-qdajZzkGn62Ry+v7bmTSd7Qza2BVjEBuCcGpxCV5Y+ANa6d//BzByMkODmYQAhAXOg6kiAgVpbnfsd/At3PWQA==
 
-aws-sdk@^2.798.0:
-  version "2.798.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.798.0.tgz#fd108e0569d7210816003fc8cc0c995b39854ad6"
-  integrity sha512-7BMCH90yFpMmCF5uxZiiKMMzIAFibZz8b6CLGw/92FgMd86ZedpNqDyaikcGv1yOVtOlNCCnXN6OglC8/vwm4Q==
+aws-sdk@^2.823.0:
+  version "2.823.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.823.0.tgz#bbf7feaeb63959a451ec964b19cef6ea7128097a"
+  integrity sha512-djrTmGu9MqsoUoaVRXjIjNPCfHBsrBBGFyZtgRhUGz9toa1ubZb2W2buUnT3ncws/bhOj5+7nO+qxAf/JzH9NA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
