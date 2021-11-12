@@ -8,7 +8,7 @@ const fileName = core.getInput('file-name');
 const filePath = path.join(tmpDir.name, fileName);
 
 const runConverter = async () => {
-  const converter = cp.spawn('node', [executable, filePath, '--experimental-symbols'], {
+  const converter = cp.spawn('node', [executable, filePath], {
     stdio: ['ignore', 'ipc', 'pipe'],
   });
 
