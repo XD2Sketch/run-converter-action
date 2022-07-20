@@ -12,11 +12,15 @@ const awsOutputDir = core.getInput('aws-output-directory');
 const outputFileName = inputFileName.replace(/\.xd$/, `.${awsOutputDir}`);
 const awsFileName = `${github.context.issue.number}_${outputFileName}`;
 const messageEnabled = core.getInput('post-message-enabled') === '1';
+const executable = core.getInput('executable');
+const conversionType = core.getInput('conversion-type');
+let filePath = path.join(tmpDir.name, fileName);
+if (conversionType === 'f2S') filePath = fileName;
 
 aws.getFile()
   .then((data) => fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body))
   .then(() => console.log(`"${inputFileName}" is downloaded from AWS`))
-  .then(() => runner.runConverter())
+  .then(() => runner.runConverter(executable, filePath))
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
   .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName)))
   .then((data) => aws.uploadFile(awsFileName, data))
