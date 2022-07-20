@@ -12,7 +12,7 @@ const awsOutputDir = core.getInput('aws-output-directory');
 const conversionType = core.getInput('conversion-type');
 let outputFileName = inputFileName.replace(/\.xd$/, `.${awsOutputDir}`);
 let filePath = path.join(tmpDir.name, inputFileName);
-if (conversionType === 'f2S') {
+if (conversionType === 'F2S') {
   outputFileName = `${inputFileName}.sketch`;
   filePath = inputFileName;
 }
@@ -20,7 +20,7 @@ const awsFileName = `${github.context.issue.number}_${outputFileName}`;
 const messageEnabled = core.getInput('post-message-enabled') === '1';
 const executable = core.getInput('executable');
 
-if (conversionType === 'f2S') {
+if (conversionType === 'F2S') {
   runner.runConverter(executable, filePath)
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
   .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName)))
