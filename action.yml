@@ -7,9 +7,12 @@ inputs:
   executable:
     description: 'Path to executable JS file'
     required: true
+  conversion-type:
+    description: 'Type of conversion'
+    required: true
   aws-input-directory:
     description: 'AWS directory which contains input file'
-    required: true
+    required: false
   aws-output-directory:
     description: 'AWS directory used to upload result file'
     required: true
