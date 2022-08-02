@@ -38,7 +38,7 @@ if (conversionType === 'F2S') {
   .catch((error) => core.setFailed(error));
 } else {
   aws.getFile()
-  .then((data) => fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body))
+  .then((data) => fs.writeFileSync(path.join(tmpDir.name, 'output', inputFileName), data.Body))
   .then(() => console.log(`"${inputFileName}" is downloaded from AWS`))
   .then(() => runner.runConverter(executable, filePath))
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
