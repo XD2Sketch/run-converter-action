@@ -29,8 +29,8 @@ const filePath = getFilePath(inputFileName, conversionType);
 
 if (conversionType === 'F2S') {
   runner.runConverter(executable, filePath)
-  .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
   .then(() => console.log(fs.readdirSync(tmpDir)))
+  .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
   .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName)))
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
