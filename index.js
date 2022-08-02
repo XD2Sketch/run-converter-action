@@ -6,7 +6,6 @@ const aws = require('./aws');
 const runner = require('./convert');
 const postMessage = require('./post-message');
 const tmpDir = require('./tmp-dir');
-const F2S_OUTPUT_DIR = 'output';
 
 const convertExtension = (filename, conversionType, extension) => {
   if (conversionType === 'F2S') return `${filename}.${extension}`;
@@ -31,7 +30,7 @@ const filePath = getFilePath(inputFileName, conversionType);
 if (conversionType === 'F2S') {
   runner.runConverter(executable, filePath)
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
-  .then(() => fs.readFileSync(path.join(tmpDir.name, F2S_OUTPUT_DIR, outputFileName)))
+  .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName)))
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
   .then(() => messageEnabled && postMessage(`Successfully converted ${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))
