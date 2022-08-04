@@ -7,9 +7,9 @@ const runner = require('./convert');
 const postMessage = require('./post-message');
 const tmpDir = require('./tmp-dir');
 
-const convertExtension = (filename, conversionType, extension) => {
+const getOutputFileName = (filename, conversionType, extension) => {
   if (conversionType === 'F2S') return `${filename}.${extension}`;
-  if (conversionType === 'XD2S') filename.replace(/\.xd$/, `.${extension}`)
+  if (conversionType === 'XD2S') return filename.replace(/\.xd$/, `.${extension}`)
 };
 
 const getFilePath = (filename, conversionType) => { 
@@ -23,7 +23,7 @@ const conversionType = core.getInput('conversion-type');
 const messageEnabled = core.getInput('post-message-enabled') === '1';
 const executable = core.getInput('executable');
 
-const outputFileName = convertExtension(inputFileName, conversionType, awsOutputDir);
+const outputFileName = getOutputFileName(inputFileName, conversionType, awsOutputDir);
 const awsFileName = `${github.context.issue.number}_${outputFileName}`;
 const filePath = getFilePath(inputFileName, conversionType);
 
