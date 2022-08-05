@@ -1,13 +1,9 @@
 const core = require('@actions/core');
 const cp = require('child_process');
-const path = require('path');
-const tmpDir = require('./tmp-dir');
 
 const executable = core.getInput('executable');
-const fileName = core.getInput('file-name');
-const filePath = path.join(tmpDir.name, fileName);
 
-const runConverter = async () => {
+const runConverter = async (filePath) => {
   const converter = cp.spawn('node', [executable, filePath], {
     stdio: ['ignore', 'ipc', 'pipe'],
   });
