@@ -16,6 +16,9 @@ inputs:
   aws-bucket-name:
     description: 'name of AWS bucket to use'
     required: true
+  conversion-type:
+    description: 'Type of conversion'
+    required: true
   post-message-enabled:
     description: 'Post message to commit once done'
     default: '1'
