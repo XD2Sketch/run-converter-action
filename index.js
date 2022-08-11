@@ -26,6 +26,7 @@ const messageEnabled = core.getInput('post-message-enabled') === '1';
 const filePath = getFilePath(inputFileName);
 
 if (conversionType === 'XD2S') {
+  console.log('Converting xd file to sketch file');
   aws.getFile()
   .then((data) => fs.writeFileSync(path.join(tmpDir.name, inputFileName), data.Body))
   .then(() => console.log(`"${inputFileName}" is downloaded from AWS`))
@@ -37,6 +38,7 @@ if (conversionType === 'XD2S') {
   .then(() => messageEnabled && postMessage(`Successfully converted ${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))
   .catch((error) => core.setFailed(error));
 } else {
+  console.log('Converting figma file to sketch file');
   runner.runConverter(filePath)
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
   .then(() => fs.readFileSync(path.join(tmpDir.name, outputFileName)))
