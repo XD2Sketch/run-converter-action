@@ -36,7 +36,7 @@ if (conversionType === 'XD2S') {
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
   .then(() => messageEnabled && postMessage(`Successfully converted ${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))
-  .catch((error) => core.setFailed(error));
+  .catch((error) => core.setFailed(error.message + " XD2S Error"));
 } else {
   console.log('Converting figma file to sketch file');
   runner.runConverter(filePath)
@@ -45,5 +45,5 @@ if (conversionType === 'XD2S') {
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
   .then(() => messageEnabled && postMessage(`Successfully converted ${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))
-  .catch((error) => core.setFailed(error));
+  .catch((error) => core.setFailed(error.message + " F2S Error"));
 }
