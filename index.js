@@ -19,7 +19,7 @@ const getFilePath = (fileName) => {
 
 const getOutputFilePath = (outputFileName, conversionType) => {
   if (conversionType === 'XD2S') return path.join(tmpDir.name, outputFileName);
-  if (conversionType === 'F2S') return path.join(tmpDir.name, 'output', outputFileName);
+  if (conversionType === 'F2S') return path.join('output', outputFileName);
 }
 
 const inputFileName = core.getInput('file-name');
