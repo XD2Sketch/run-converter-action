@@ -38,7 +38,7 @@ if (conversionType === 'XD2S') {
   .then(() => console.log(`"${inputFileName}" is downloaded from AWS`))
   .then(() => runner.runConverter(filePath))
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
-  .then(() => fs.readFileSync(path.join(tmpDir.name, outputFilePath)))
+  .then(() => fs.readFileSync(outputFilePath))
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
   .then(() => messageEnabled && postMessage(`Successfully converted ${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))
@@ -47,7 +47,7 @@ if (conversionType === 'XD2S') {
   console.log('Converting figma file to sketch file');
   runner.runConverter(filePath)
   .then(() => console.log(`"${inputFileName}" successfully converted to ${awsOutputDir}`))
-  .then(() => fs.readFileSync(path.join(tmpDir.name, outputFilePath)))
+  .then(() => fs.readFileSync(outputFilePath))
   .then((data) => aws.uploadFile(awsFileName, data))
   .then(() => console.log(`"${awsFileName}" successfully uploaded to AWS`))
   .then(() => messageEnabled && postMessage(`Successfully converted ${inputFileName}\n\nResult available at: ${aws.getUrl(awsFileName)}`))
